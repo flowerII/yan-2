@@ -1,0 +1,34 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+	<title>卓越书城</title>
+  	<link th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.css}" rel="stylesheet"></link>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <style type="text/css">
+        .indexfooter{
+        	text-align: center;
+        }
+    </style>
+  </head>
+
+  <body>
+    <!-- <div class="container" th:replace="layout :: navbar">(navbar)</div> -->
+    <div class="container">
+      <div class="row">
+            <div class="col-md-2"><img alt="" th:src="@{/images/-7ed187ed5dcecb5.jpg}" class="img-responsive"/></div>
+            <div class="col-md-2"><img alt="" th:src="@{/images/-7ed187ed5dcecb5.jpg}" class="img-responsive"/></div>
+            <div class="col-md-2"><img alt="" th:src="@{/images/-7ed187ed5dcecb5.jpg}" class="img-responsive"/></div>
+            <div class="col-md-2"><img alt="" th:src="@{/images/-7ed187ed5dcecb5.jpg}" class="img-responsive"/></div>
+            <div class="col-md-2"><img alt="" th:src="@{/images/-7ed187ed5dcecb5.jpg}" class="img-responsive"/></div>
+            <div class="col-md-2"><img alt="" th:src="@{/images/-7ed187ed5dcecb5.jpg}" class="img-responsive"/></div>
+      </div>
+    </div>
+
+    <div th:include="layout :: footer" id="footer" class="indexfooter">(footer)</div>
+
+  </body>
+</html>

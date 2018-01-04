@@ -1,0 +1,47 @@
+@charset "utf-8";
+.topimage{
+	height:100px;
+	width:100%;
+}
+
+.tb{
+	padding-left: 0px;
+    margin-left: 0px;
+}
+.righttb th,.righttb td{
+	text-align: center;
+	height:25px; 
+	width:200px
+}
+
+th{
+	font-weight: bold;
+}
+
+.whiteSpace{width:9px;}
+.leftna{
+	width:20px;
+}
+.rightColumnBox{width: 1030px;;padding-bottom:48px;background:#fff;border:1px solid #e1e1e1;text-align:center;}
+
+ul li{
+	list-style:none;
+    text-align: right;
+}
+
+a{text-decoration: none; color:#666; outline:none;}
+a:hover{text-decoration:none; color:#008080; outline:none;}
+
+.ui-widget-content{
+	width:150px
+}
+
+.bottomBtnBox{margin:0 auto;text-align:center;padding:15px 0;}
+.bottomBtnBox a{margin:0 16px;}
+.btn-93X38{display:inline-block;width:93px;height:38px;line-height:38px;text-align:center;color:#FFF;background:url(/images/index/btn-93X38.png) 0 0 no-repeat;font-size:16px;font-weight:600;}
+.saveBtn{background-position:0 0;}
+.saveBtn:hover{background-position:0 -38px;color:#FFF;}
+.backBtn{background-position:0 -76px;}
+.backBtn:hover{background-position:0 -114px;color:#FFF;}
+.resetBtn{background-position:0 -152px;}
+.resetBtn:hover{background-position:0 -190px;color:#FFF;}

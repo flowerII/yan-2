@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <title>Home</title>
+    <meta content="" name="keywords"/>
+    <meta content="" name="description"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+    <link type="image/x-icon" th:src="@{favicon.ico}" rel="shortcut icon"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/jquery-ui/1.12.1/themes/base/jquery-ui.css}"/>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>  
+    <style>
+            .panel-group{max-height:770px;overflow: auto;}
+            .leftMenu{margin:10px;margin-top:5px;}
+            .leftMenu .panel-heading{font-size:14px;padding-left:20px;height:36px;line-height:36px;color:white;position:relative;cursor:pointer;}/*转成手形图标*/
+            .leftMenu .panel-heading span{position:absolute;right:10px;top:12px;}
+            .leftMenu .menu-item-left{padding: 2px; background: transparent; border:1px solid transparent;border-radius: 6px;}
+            .leftMenu .menu-item-left:hover{background:#C4E3F3;border:1px solid #1E90FF;}
+    </style>
+</head>
+<body>
+
+<div class="container" th:replace="layout/nav :: nav"></div>
+
+<div class="container">
+	<div th:replace="layout/bar :: accordion"></div>
+</div>
+
+<div class="container" align="center">
+   	<img class="img-responsive" alt="info" th:src="@{/images/info.png}"/>
+   	<img class="img-responsive" alt="info" th:src="@{/images/info2.png}"/>
+</div>
+<div class="container" th:replace="layout/footer :: footer"></div>
+
+<script th:src="@{/webjars/jquery/3.2.1/dist/jquery.min.js}"></script>
+<script th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}"></script>
+<script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+<script th:src="@{/js/jquery.validate.min.js}"></script>
+<script th:src="@{/js/artDialog.js}"></script>
+<script th:src="@{/js/list.js}"></script>
+<script th:src="@{/js/depart.js}"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $("#logout").click(function () {
+            if (confirm('您确定退出吗？')) {
+                $("#logoutform").submit();
+            }
+        });
+        
+        $(".panel-heading").click(function(e){
+            /*切换折叠指示图标*/
+            $(this).find("span").toggleClass("glyphicon-chevron-down");
+            $(this).find("span").toggleClass("glyphicon-chevron-up");
+        });
+    });
+</script>
+</body>
+</html>

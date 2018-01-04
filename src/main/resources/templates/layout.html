@@ -1,0 +1,72 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+  <meta charset="UTF-8"/>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+  </head>
+
+  <body>
+    <div th:fragment="navbar" class="navbar navbar-default container" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">卓越书城</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a th:href="@{/}" th:if="${user.username=='0'}">首页</a></li>
+            <li class="active"><a th:href="@{/loginindex}" th:if="${user.username!='0'}">首页</a></li>
+            <li th:each="category : ${pageCategory}"><a th:href="@{'/category?id='+${category.id}+'&amp;page=0&amp;username='+${user.username}}" th:text="${category.name}">医学</a></li>
+          </ul>
+          <form  id="search_form" class="navbar-form navbar-left" role="search" th:action="@{'/search?page=0&amp;username='+${user.username}}" method="post">
+	        <div class="row">
+	        	<div align="right">
+			         <span><input type="text" id="scontent" class="form-control" name="scontent" placeholder="书名、作者、分类"/><button type="button" id="searchbtn" class="btn btn-default">搜索</button></span>
+			    </div>
+	        </div>
+	      </form>
+          <ul class="nav navbar-nav navbar-right" th:if="${user.username=='0'}"> 
+            <li><a th:href="@{/registry}"><span class="glyphicon glyphicon-user"></span> 注册</a></li> 
+            <li><a th:href="@{/login}"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li> 
+          </ul>
+          <ul class="nav navbar-nav navbar-right" th:if="${user.username!='0'}"> 
+          	<li><a th:href="@{/cart/get}"><span class="glyphicon glyphicon-shopping-cart"></span> 购物车</a></li>
+          	<li><a th:href="@{/order/list}"><span class="glyphicon glyphicon-th-list"></span> 我的订单</a></li>
+            <li><a id="logout" href="javascript:void(0)"><span class="glyphicon glyphicon-log-out"></span>退出</a></li>  
+          </ul>
+        </div>
+      </div>
+      <form th:action="@{/logout}" method="post" id="logoutform"></form>
+    </div>
+    
+    <div th:fragment="footer" align="center" id="footer">
+        <a href="#">关于我们</a> | <a href="#">联系我们</a>
+        <p>© 2018 The Qianshu Network Technology Company</p>
+        <script th:src="@{/webjars/jquery/3.2.1/dist/jquery.min.js}"></script>
+        <script th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}"></script>
+        <script type="text/javascript" th:src="@{/js/public.js}"></script>
+        <script type="text/javascript">
+		    $(function () {
+		    	$("#searchbtn").click(function () {
+		    		if($('#scontent').val()==null||$('#scontent').val()==""){
+		    			alert("请输入搜索信息！");
+		    			return ;
+		    		}
+		    		$('#search_form').submit();
+		        });	   
+		    	
+		    	$("#logout").click(function () {
+		            if (confirm('您确定退出吗？')) {
+		                $("#logoutform").submit();
+		            }
+		        });
+		    });
+		</script>
+    </div>
+  </body>
+</html>

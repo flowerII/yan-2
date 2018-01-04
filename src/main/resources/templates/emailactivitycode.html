@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html lang="zh" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>卓越书城账号激活</title>
+    </head>
+    <body>
+        您好,这是卓越书城注册账号激活邮件,请点击下面的链接完成激活，24小时内有效，如非本人操作，请忽略信息<br/>
+         <a href="#" th:href="@{'http://localhost:8080/activeUser?activeCode='+${activeCode}}">激活账号</a>
+         <p th:text="'您的激活码为:'+${activeCode}"></p>
+    </body>
+</html>

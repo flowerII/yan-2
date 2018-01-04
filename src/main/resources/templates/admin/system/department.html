@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorator="layout/base">
+<head>
+	<script th:src="@{/webjars/jquery/3.2.1/dist/jquery.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}"></script>
+	<script th:src="@{/webjars/jquery-ui/1.12.1/jquery-ui.min.js}"></script>
+	<script th:src="@{/js/jquery.validate.min.js}"></script>
+	<script th:src="@{/js/artDialog.js}"></script>
+	<title>卓越书城</title>
+</head>
+<div layout:fragment="content">
+    <form id="queryForm" method="get">
+    <div>
+       <ul>
+           <li>
+           		<div  align="left" class="locationLine" layout:fragment="prompt">
+				    当前位置：首页 &gt; <em >部门管理</em>
+				</div>
+               <label>名称</label>
+               <input type="text" value="" id="name" name="name"/><button class="btn btn btn-default">查询</button>
+           </li>
+       </ul>
+    </div>
+    <div>
+       <ul>
+           <li>
+               <a id="addUserInf" class="btn btn btn-default" th:href="@{/new}">新增</a>
+           </li>
+       </ul>
+    </div>
+    <div>
+        <table class="table righttb">
+            <thead>
+			    <tr>
+			      <th>名称</th>
+			      <th>城市</th>
+			      <th>邮编</th>
+			      <th>操作</th></tr>
+			</thead>
+		    <tbody>
+			   <tr th:each="city : ${listCity}">
+			     <th scope="row" th:text="${city.id}">1</th>
+			     <td th:text="${city.name}">Mark</td>
+			     <td th:text="${city.code}">Otto</td>
+			     <td><a href="#">查看</a> | <a href="#">修改</a> | <a href="#">删除</a></td></tr>
+		    </tbody>
+        </table>
+    </div>
+    </form>
+    <div class="pagination">
+    	<a href="#" id="page">首页</a>
+    	<a href="#" id="page">上一页</a>
+    	<span class="current" >1</span>
+    	<a href="#" id="page">下一页</a>
+    	<a href="#" id="page">尾页</a>
+    	<span style="border: 0px">共有&nbsp;&nbsp;<span style="color:#3970AE;border: 0px;" >2</span>&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp;</span>
+   	</div>
+</div>
+
+<script type="text/javascript">
+    $(function () {
+        $( "#accordion" ).accordion({
+        	collapsible: true,
+        });
+    });
+</script>
+<script th:src="@{/js/new.js}"></script>
+
+</html>

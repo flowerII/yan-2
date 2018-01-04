@@ -1,0 +1,128 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<title>卓越书城</title>
+  	<link th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.css}" rel="stylesheet"></link>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <style type="text/css">
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+        .indexfooter{
+        	text-align: center;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="container" th:replace="layout :: navbar">(navbar)</div>
+
+    <div class="container">
+		<div class="table-responsive">
+			<table class="table">
+					<tbody>
+					<tr>
+						<th align="center" colspan="5" th:text="${'订单编号:'+order.id}"></th>
+					</tr>
+					<tr>
+						<th>图片</th>
+						<th>商品</th>
+						<th>价格</th>
+						<th>数量</th>
+						<th>小计</th>
+					</tr>
+					<tr th:each="orderItem : ${order.orderItems}">
+						<td>
+							<img th:src="${orderItem.book.pic}"/>
+						</td>
+						<td th:text="${orderItem.book.name}">qianshu</td>
+						<td th:text="${orderItem.book.price}">18.90</td>
+						<td th:text="${orderItem.count}">1</td>
+						<td width="140" th:text="${orderItem.subtotal}">18.90</td>							
+					</tr>
+				</tbody>
+			</table>
+		</div>	
+		<hr/>	
+		<div>
+			商品金额(￥): <strong th:text="${order.total}">72</strong>
+		</div>
+		<hr/>
+		<form id="orderForm" action="" method="post" class="form container" role="form">
+			<div class="form-group">
+				<label for="address">收获地址:</label>
+				<input type="text" name="address" id="address" placeholder="XX省XX市XX街道XX号" style="width:350px"/>
+			</div>
+			<div class="form-group">
+				<label for="name">收&nbsp;&nbsp;获&nbsp;&nbsp;人:</label>
+				<input type="text" name="name" id="name" placeholder="姓名"/>
+			</div>
+			<div class="form-group">
+				<label for="phone">手&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;机&nbsp;:</label>
+				<input type="text" name="phone" id="phone" placeholder="电话"/>
+			</div>
+			<div>
+				<div class="table-responsive">
+					<table class="table">
+						<caption>选择银行</caption>
+						<tbody>
+							<tr>
+								<td>
+									<input type="radio" name="pd_FrpId" value="ICBC-NET-B2C" checked="checked"/>工商银行
+									<img th:src="@{/images/bank_img/icbc.bmp}" align="middle"/>
+								</td>
+								<td>
+									<input type="radio" name="pd_FrpId" value="BOC-NET-B2C"/>中国银行
+									<img th:src="@{/images/bank_img/bc.bmp}" align="middle"/>
+								</td>
+								<td>
+									<input type="radio" name="pd_FrpId" value="ABC-NET-B2C"/>农业银行
+									<img th:src="@{/images/bank_img/abc.bmp}" align="middle"/>
+								</td>
+							</tr>
+							<tr>								
+								<td>
+									<input type="radio" name="pd_FrpId" value="BOCO-NET-B2C"/>交通银行
+					    			<img th:src="@{/images/bank_img/bcc.bmp}" align="middle"/>
+								</td>
+								<td>
+									<input type="radio" name="pd_FrpId" value="PINGANBANK-NET"/>平安银行
+									<img th:src="@{/images/bank_img/pingan.bmp}" align="middle"/>
+								</td>
+								<td>
+									<input type="radio" name="pd_FrpId" value="CCB-NET-B2C"/>建设银行
+									<img th:src="@{/images/bank_img/ccb.bmp}" align="middle"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<input type="radio" name="pd_FrpId" value="CEB-NET-B2C"/>光大银行
+									<img th:src="@{/images/bank_img/guangda.bmp}" align="middle"/>
+								</td>
+								<td>
+									<input type="radio" name="pd_FrpId" value="CMBCHINA-NET-B2C"/>招商银行
+									<img th:src="@{/images/bank_img/cmb.bmp}" align="middle"/>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				<hr/>
+			</div>
+		</form>
+    </div>
+
+	<div class="container" align="center">
+    	<img class="img-responsive" alt="info" th:src="@{/images/info.png}"/>
+    	<img class="img-responsive" alt="info" th:src="@{/images/info2.png}"/>
+    </div>
+    <div th:include="layout :: footer" id="footer" class="indexfooter">(footer)</div>
+  </body>
+</html>

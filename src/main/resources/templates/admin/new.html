@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, maximum-scale=1, user-scalable=no" />
+    <meta name="format-detection" content="telephone=no"/>
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black"/>
+    <title>卓越书城</title>
+    <meta content="" name="keywords"/>
+    <meta content="" name="description"/>
+    <link type="image/x-icon" th:src="@{favicon.ico}" rel="shortcut icon"/>
+    <link rel="stylesheet" th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.min.css}"/>
+    <link rel="stylesheet" th:href="@{/webjars/jquery-ui/1.12.1/themes/base/jquery-ui.css}"/>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <link rel="stylesheet" th:href="@{/css/default.css}"/>
+    <script th:src="@{/webjars/jquery/3.2.1/dist/jquery.min.js}"></script>
+    <script th:src="@{/js/jquery.validate.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/3.3.7/dist/js/bootstrap.min.js}"></script>
+    <script th:src="@{/js/new.js}"></script>   
+</head>
+<body>
+	<form id="saveForm" action="" method="post">
+	    <table class="tb">
+	        <tr>
+	            <th>名称</th>
+	            <td width="240">
+	                <input type="text" name="name" id="name" maxlength="32" />
+	                <span>*</span>
+	            </td>
+	            <th>邮编</th>
+	            <td>
+	                <input type="text" name="code" id="code" maxlength="6" />
+	            </td>
+	        </tr>
+	    </table>
+	    <div class="bottomBtnBox">
+	        <a class="btn-93X38 saveBtn" href="javascript:void(0)">确定</a>
+	        <a class="btn-93X38 backBtn" href="javascript:history.back(-1)">返回</a>
+	    </div>
+	</form>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="depart">  
+	<div class="table-responsive">
+        <table class="table">
+            <thead>
+			    <tr>
+			      <th>名称</th>
+			      <th>城市</th>
+			      <th>邮编</th>
+			      <th>操作</th></tr>
+			</thead>
+		    <tbody>
+			   <tr th:each="city : ${listCity}">
+			     <th scope="row" th:text="${city.id}">1</th>
+			     <td th:text="${city.name}">Mark</td>
+			     <td th:text="${city.code}">Otto</td>
+			     <td><a href="#">查看</a> | <a href="#">修改</a> | <a href="#">删除</a></td></tr>
+		    </tbody>
+        </table>
+    </div>
+</div>
+</body>
+</html>

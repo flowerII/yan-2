@@ -1,0 +1,78 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<title>卓越书城</title>
+  	<link th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.css}" rel="stylesheet"></link>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <style type="text/css">
+        .starter-template {
+            padding: 40px 15px;
+            text-align: center;
+        }
+        .indexfooter{
+        	text-align: center;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="container" th:replace="layout :: navbar">(navbar)</div>
+
+    <div class="container">
+    	<ul th:if="${hasOrder!=true}">
+    		<li><p align="left">当前还没有任何订单！</p></li>
+    	</ul>
+		<ul th:if="${hasOrder==true}">
+			<li th:each="order : ${orderPage}">
+				<div class="table-responsive">
+					<table class="table">
+							<tbody>
+							<tr>
+								<th align="center" colspan="5" th:text="${'订单编号:'+order.id}"></th>
+							</tr>
+							<tr>
+								<th>图片</th>
+								<th>商品</th>
+								<th>价格</th>
+								<th>数量</th>
+								<th>小计</th>
+							</tr>
+							<tr th:each="orderItem : ${order.orderItems}">
+								<td>
+									<img th:src="${orderItem.book.pic}"/>
+								</td>
+								<td th:text="${orderItem.book.name}">qianshu</td>
+								<td th:text="${orderItem.book.price}">18.90</td>
+								<td th:text="${orderItem.count}">1</td>
+								<td width="140" th:text="${orderItem.subtotal}">18.90</td>							
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</li>
+		</ul>		
+    </div>
+    <div class="container" align="center">
+    	<div class="pagination">
+	    	<a th:href="@{/order/list?}" th:if="${orderPage.number+1>1}" id="page">首页</a>
+	    	<a th:href="@{'/order/list?page='+${orderPage.number-1}}" th:if="${orderPage.number>0}" id="page">上一页</a>
+	    	<span class="current" th:text="${orderPage.number+1}">1</span>
+	    	<a th:href="@{'/order/list?page='+${orderPage.number+1}}" th:if="${orderPage.number!=orderPage.totalPages-1}" id="page">下一页</a>
+	    	<a th:href="@{'/order/list?page='+${orderPage.totalPages-1}}" th:if="${orderPage.number+1!=orderPage.totalPages}" id="page">尾页</a>
+	    	<span style="border: 0px">共有&nbsp;&nbsp;<span style="color:#3970AE;border: 0px;" th:text="${orderPage.totalPages}">2</span>&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp;</span>
+	   	</div>
+    </div>
+
+	<div class="container" align="center">
+    	<img class="img-responsive" alt="info" th:src="@{/images/info.png}"/>
+    	<img class="img-responsive" alt="info" th:src="@{/images/info2.png}"/>
+    </div>
+    <div th:include="layout :: footer" id="footer" class="indexfooter">(footer)</div>
+  </body>
+</html>

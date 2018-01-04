@@ -1,0 +1,97 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+    <meta name="_csrf" th:content="${_csrf.token}"/>
+    <meta name="_csrf_header" th:content="${_csrf.headerName}"/>
+	<title>卓越书城</title>
+  	<link th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.css}" rel="stylesheet"></link>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <style type="text/css">
+        .indexfooter{
+        	text-align: center;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="container" th:replace="layout :: navbar">(navbar)</div>
+
+    <div class="container">
+      <div th:if="${hasItems!=true}">
+    		<table class="table">
+        		<caption>我的购物车</caption>
+        	</table>
+      		<p>您的购物车空空如也！</p>
+      	
+      </div>
+      <div th:if="${hasItems==true}">
+        <table class="table">
+        	<caption>我的购物车</caption>
+        	<thead>
+			    <tr>
+			      <th>图片</th>
+			      <th>名称</th>
+			      <th>单价</th>
+			      <th>数量</th>
+			      <th>小计</th>
+			      <th>操作</th>
+			    </tr>
+			</thead>
+        	<tbody>
+			   <tr th:each="item : ${cartItems}">
+			     <td><img alt="book" th:src="${item.book.pic}"/></td>
+			     <td>
+			     	<p th:text="${item.book.name}">Oo</p>
+			     </td>
+			     <td>
+			     	<p th:text="${item.book.price}">12.89元</p>
+			     </td>
+			     <td>
+			     	<p th:text="${item.count}">1</p>
+			     </td>
+			     <td>
+			     	<p th:text="${item.subtotal}">12.89元</p>
+			     </td>
+			     <td>
+			     	<form th:action="@{'/cart/remove?id='+${item.id}}" method="post">
+			     		<input type="submit" class=" btn btn-primary" value="移除"/>
+			     	</form>
+			     </td>
+			   </tr>
+		   </tbody>
+        </table>
+        <hr/>
+        <div align="right">
+    	<ul>
+    		<li>
+    			<form th:action="@{/order/add}" method="post">
+			  		<input type="submit" class=" btn btn-primary" value="提交订单"/>
+				</form>
+    		</li>
+    		<li>
+    			<form th:action="@{/cart/clear}" method="post">
+			  		<input type="submit" class=" btn btn-primary" value="清空购物车"/>
+				</form>
+    		</li>
+    	</ul>
+    </div>
+      </div>
+    </div>
+   
+    
+    <div class="container">
+    	<hr/>
+    </div>
+    <div class="container" align="center">
+    	<img class="img-responsive" alt="info" th:src="@{/images/info.png}"/>
+    	<img class="img-responsive" alt="info" th:src="@{/images/info2.png}"/>
+    </div>
+
+    <div th:include="layout :: footer" id="footer" class="indexfooter">(footer)</div>
+
+  </body>
+</html>

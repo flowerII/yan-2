@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" xmlns:th="http://www.w3.org/1999/xhtml" layout:decorator="layout/base">
+<div layout:fragment="content">
+    <form id="queryForm" method="get">
+    <div>
+       <ul>
+           <li>
+               <label>名称</label>
+               <input type="text" value="" id="name" name="name"/><button class="btn btn btn-default">查询</button>
+           </li>
+       </ul>
+    </div>
+    <div>
+       <ul>
+           <li>
+               <button class="btn btn btn-default">新增</button>
+           </li>
+       </ul>
+    </div>
+    <div>
+        <table class="table righttb">
+            <thead>
+			    <tr>
+			      <th>名称</th>
+			      <th>城市</th>
+			      <th>邮编</th>
+			      <th>操作</th></tr>
+			</thead>
+		    <tbody>
+			   <tr th:each="city : ${pageCity}">
+			     <th scope="row" th:text="${city.id}">1</th>
+			     <td th:text="${city.name}">Mark</td>
+			     <td th:text="${city.code}">Otto</td>
+			     <td><a href="#">查看</a> | <a href="#">修改</a> | <a href="#">删除</a></td></tr>
+		    </tbody>
+        </table>
+    </div>
+    </form>
+    <div class="pagination">
+    	<a th:href="@{/params}" th:if="${pageCity.number+1>1}" id="page">首页</a>
+    	<a th:href="@{'/params?page='+${pageCity.number-1}}" th:if="${pageCity.number>0}" id="page">上一页</a>
+    	<span class="current" th:text="${pageCity.number+1}">1</span>
+    	<a th:href="@{'/params?page='+${pageCity.number+1}}" th:if="${pageCity.number!=pageCity.totalPages-1}" id="page">下一页</a>
+    	<a th:href="@{'/params?page='+${pageCity.totalPages-1}}" th:if="${pageCity.number+1!=pageCity.totalPages}" id="page">尾页</a>
+    	<span style="border: 0px">共有&nbsp;&nbsp;<span style="color:#3970AE;border: 0px;" th:text="${pageCity.totalPages}">2</span>&nbsp;&nbsp;页&nbsp;&nbsp;&nbsp;</span>
+   	</div>
+</div>
+</html>

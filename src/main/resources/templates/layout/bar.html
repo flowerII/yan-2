@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<div th:fragment="accordion">  
+	<div class="row">
+            <div class="col-md-2">
+                <div class="panel-group table-responsive" role="tablist">
+                    <div class="panel panel-primary leftMenu">
+                        <!-- 利用data-target指定要折叠的分组列表 -->
+                        <div class="panel-heading" id="collapseListGroupHeading1" data-toggle="collapse" data-target="#collapseListGroup1" role="tab" >
+                            <h4 class="panel-title">系统管理<span class="glyphicon glyphicon-chevron-up right"></span>
+                            </h4>
+                        </div>
+                        <!-- .panel-collapse和.collapse标明折叠元素 .in表示要显示出来 -->
+                        <div id="collapseListGroup1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="collapseListGroupHeading1">
+                            <ul class="list-group">
+                              <li class="list-group-item">
+                                <!-- 利用data-target指定URL -->
+                                <button class="menu-item-left" id="depart">
+                                    <span class="glyphicon glyphicon-triangle-right"></span>部门管理
+                                </button>
+                              </li>
+                              <li class="list-group-item">
+                                <button class="menu-item-left">
+                                    <span class="glyphicon glyphicon-triangle-right"></span>角色管理
+                                </button>
+                              </li>
+                              <li class="list-group-item">
+                                <button class="menu-item-left">
+                                    <span class="glyphicon glyphicon-triangle-right"></span>用户管理
+                                </button>
+                              </li>
+                            </ul>
+                        </div>
+                    </div><!--panel end-->
+                    <div class="panel panel-primary leftMenu">
+                        <div class="panel-heading" id="collapseListGroupHeading2" data-toggle="collapse" data-target="#collapseListGroup2" role="tab" >
+                            <h4 class="panel-title"> 商品管理<span class="glyphicon glyphicon-chevron-down right"></span></h4>
+                        </div>
+                        <div id="collapseListGroup2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading2">
+                            <ul class="list-group">
+                              <li class="list-group-item">
+                                <button class="menu-item-left">
+                                    <span class="glyphicon glyphicon-triangle-right"></span>增加商品
+                                </button>
+                              </li>
+                              <li class="list-group-item">
+                                <button class="menu-item-left">
+                                    <span class="glyphicon glyphicon-triangle-right"></span>修改商品
+                                </button>
+                              </li>
+                              <li class="list-group-item">
+                                <button class="menu-item-left">
+                                    <span class="glyphicon glyphicon-triangle-right"></span>下架商品
+                                </button>
+                              </li>
+                              <li class="list-group-item">
+                                <button class="menu-item-left">
+                                    <span class="glyphicon glyphicon-triangle-right"></span>查询商品
+                                </button>
+                              </li>
+                            </ul>
+                        </div>
+                    </div>  
+                    <div class="panel panel-primary leftMenu">
+                        <div class="panel-heading" id="collapseListGroupHeading3" data-toggle="collapse" data-target="#collapseListGroup3" role="tab" >
+                            <h4 class="panel-title"> 订单管理<span class="glyphicon glyphicon-chevron-down right"></span></h4>
+                        </div>
+                        <div id="collapseListGroup3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="collapseListGroupHeading3">
+                            <ul class="list-group">
+                              <li class="list-group-item">
+                                <button class="menu-item-left">
+                                    <span class="glyphicon glyphicon-triangle-right"></span>查找订单
+                                </button>
+                              </li>
+                              <li class="list-group-item">
+                                <button class="menu-item-left">
+                                    <span class="glyphicon glyphicon-triangle-right"></span>修改订单
+                                </button>
+                              </li>
+                              <li class="list-group-item">
+                                <button class="menu-item-left">
+                                    <span class="glyphicon glyphicon-triangle-right"></span>删除订单
+                                </button>
+                              </li>
+                              <li class="list-group-item">
+                                <button class="menu-item-left">
+                                    <span class="glyphicon glyphicon-triangle-right"></span>查询商品
+                                </button>
+                              </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-10">
+               <div id="content"></div>
+            </div>
+        </div>
+</div>
+</body>
+</html>

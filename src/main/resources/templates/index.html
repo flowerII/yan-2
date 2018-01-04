@@ -1,0 +1,109 @@
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="utf-8"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"></meta>
+    <meta name="description" content=""></meta>
+    <meta name="author" content=""></meta>
+	<title>卓越书城</title>
+  	<link th:href="@{/webjars/bootstrap/3.3.7/dist/css/bootstrap.css}" rel="stylesheet"></link>
+    <link rel="stylesheet" th:href="@{/css/index.css}"/>
+    <style type="text/css">
+        .indexfooter{
+        	text-align: center;
+        }
+        .flex{
+      	    display: flex;
+   			justify-content: space-around;
+   			padding: 10px 0;
+        }
+        h4{
+	        margin: 0 30px;
+	    	line-height: 2;
+	   	 	border-bottom: 1px solid;
+        }
+        .img {
+            background-repeat: no-repeat;
+            background-position: center;
+            width:200px;
+            heigth:100px;
+            background-size: cover;
+        }
+    </style>
+  </head>
+
+  <body>
+    <div class="container" th:replace="layout :: navbar">(navbar)</div>
+	
+	<div class="container">
+		<div class="row">
+			<div class="col-sm-12 col-xs-12">
+				<div id="myCarousel" class="carousel slide">
+				    <!-- 轮播（Carousel）指标 -->
+				    <ol class="carousel-indicators">
+				        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+				        <li data-target="#myCarousel" data-slide-to="1"></li>
+				        <li data-target="#myCarousel" data-slide-to="2"></li>
+				    </ol>   
+				    <!-- 轮播（Carousel）项目 -->
+				    <div class="carousel-inner">
+				        <div class="item active">
+				            <img th:src="@{/images/2.jpg}" alt="First slide" class="img-responsive center-block img"/>
+				        </div>
+				        <div class="item">
+				            <img th:src="@{/images/3.jpg}" alt="Second slide" class="img-responsive center-block img"/>
+				        </div>
+				        <div class="item">
+				            <img th:src="@{/images/5.jpg}" alt="Third slide" class="img-responsive center-block img"/>
+				        </div>
+				    </div>
+				    <!-- 轮播（Carousel）导航 -->
+				    <a class="carousel-control left" href="#myCarousel" 
+				        data-slide="prev">&lsaquo;
+				    </a>
+				    <a class="carousel-control right" href="#myCarousel" 
+				        data-slide="next">&rsaquo;
+				    </a>
+				</div>
+			</div>
+		</div>
+	</div>
+    
+    <div class="container">
+    	<div class="row">
+    		<h4>最新商品</h4>
+            <div class="col-md-3 col-xs-6" th:each="book : ${bookNewList}">
+            	<div class="flex">
+		   			<a th:href="@{'/book/find_by_id?id='+${book.id}+'&amp;username='+${user.username}}"><img alt="book" th:src="${book.pic}" class="img-responsive"/></a>
+		   			<div>
+		   				<p th:text="'书名:'+${book.name}">Mark</p>
+		   				<p th:text="'作者:'+${book.author}">Mark</p>
+		   				<p th:text="'价格'+${book.price}">Mark</p>
+		   			</div>
+		   		</div>
+            </div>
+        </div>
+        <div class="row">
+        	<h4>最新商品</h4>
+            <div class="col-md-3 col-xs-6" th:each="book : ${bookIsHotList}">
+            	<div class="flex">
+		   			<a th:href="@{'/book/find_by_id?id='+${book.id}+'&amp;username='+${user.username}}"><img alt="book" th:src="${book.pic}" class="img-responsive"/></a>
+		   			<div>
+		   				<p th:text="'书名:'+${book.name}">Mark</p>
+		   				<p th:text="'作者:'+${book.author}">Mark</p>
+		   				<p th:text="'价格'+${book.price}">Mark</p>
+		   			</div>
+		   		</div>
+            </div>
+        </div>
+    </div>
+
+    <div th:include="layout :: footer" id="footer" class="indexfooter">(footer)</div>
+    <script type="text/javascript">
+	    $(function(){
+	    	$('#myCarousel').carousel('cycle')
+	    });
+    </script>
+
+  </body>
+</html>
